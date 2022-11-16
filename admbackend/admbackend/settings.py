@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'user',
+    'item',
 ]
 
 MIDDLEWARE = [
@@ -143,9 +144,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',  # 全局，要求被认证，也就是登录成功
-    # ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # 全局，要求被认证，也就是登录成功
+        'utils.permissions.CustomModelPermission'
+    ],
     'DEFAULT_PAGINATION_CLASS': 'utils.paginations.CustomNumberPagination',
 }
 

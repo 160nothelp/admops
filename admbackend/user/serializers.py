@@ -6,7 +6,7 @@ from .models import UserProfile
 
 
 class UserSerializer(serializers.ModelSerializer):
-    checkPass = serializers.CharField(required=True, max_length=16, min_length=6, write_only=True, )
+    checkPass = serializers.CharField(required=True, max_length=16, min_length=6, write_only=True)
 
     class Meta:
         model = UserProfile

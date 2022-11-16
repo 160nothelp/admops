@@ -21,18 +21,31 @@
         <el-table-column prop="username" label="登录名"></el-table-column>
         <el-table-column prop="is_active" label="激活">
           <template #default="{ row }">
-            <el-switch v-model="row.is_active" :disabled="row.id === 1" @change="handleChange(row)"></el-switch>
+            <el-switch
+                v-model="row.is_active"
+                :disabled="row.id === 1"
+                @change="handleChange('is_active', row.is_active, row.id)"
+            >
+            </el-switch>
           </template>
         </el-table-column>
         <el-table-column prop="is_superuser" label="管理员">
           <template #default="{ row }">
-            <el-switch v-model="row.is_superuser" :disabled="row.id === 1" @change="handleChange(row)"></el-switch>
+            <el-switch
+                v-model="row.is_superuser"
+                :disabled="row.id === 1"
+                @change="handleChange('is_superuser', row.is_superuser, row.id)"
+            >
+            </el-switch>
           </template>
         </el-table-column>
         <el-table-column prop="phone" label="电话"></el-table-column>
         <el-table-column label="操作">
           <template #default="{ row }">
-            <el-button v-if="row.id !== 1" @click="handleEdit(row)" type="success" icon="el-icon-edit" size="mini"></el-button>
+            <el-button v-if="row.id !== 1" @click="handleAuthorUser(row)" type="info" icon="el-icon-user"
+                       size="mini"></el-button>
+            <el-button v-if="row.id !== 1" @click="handleEdit(row)" type="success" icon="el-icon-edit"
+                       size="mini"></el-button>
             <el-button v-if="row.id !== 1" @click="handleDel(row.id)" type="danger" icon="el-icon-delete" size="mini">
             </el-button>
           </template>
@@ -49,6 +62,24 @@
       >
       </el-pagination>
     </el-card>
+    <!-- 赋权对话框 -->
+    <el-dialog title="角色" :visible.sync="addRoleDialogVisible" @close="resetTree">
+      <el-tree
+          :data="roleList"
+          show-checkbox
+          default-expand-all
+          node-key="id"
+          ref="tree"
+          highlight-current
+          :props="{ label: 'name' }"
+          :default-checked-keys="selectedIds"
+      >
+      </el-tree>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="addRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addRole">确 定</el-button>
+      </span>
+    </el-dialog>
     <!-- 添加用户 -->
     <el-dialog title="增加用户" :visible.sync="addDialogVisible" @close="resetForm('add')">
       <el-form :model="addForm" :rules="addRules" ref="add" label-width="100px">
@@ -133,6 +164,7 @@ export default {
       search: '',
       addDialogVisible: false,
       editDialogVisible: false,
+      addRoleDialogVisible: false,
       addForm: {username: '', password: '', checkPass: '', phone: '', email: ''},
       editForm: {username: '', phone: '', email: '', id: ''},
       dataList: [],
@@ -156,7 +188,10 @@ export default {
         phone: [
           {validator: validatePhone, trigger: 'blur'}
         ]
-      }
+      },
+      roleList: [],
+      selectedIds: [],
+      currentUser: {}
     }
   },
   created() {
@@ -231,10 +266,37 @@ export default {
         }
       })
     },
-    async handleChange(row) {
-      await this.$http.patch(`users/mgt/${row.id}/`, {
-        is_active: row.is_active
+    async handleChange(key, value, id) {
+      await this.$http.patch(`users/mgt/${id}/`, {
+        [key]: value
       })
+    },
+    resetTree() {
+      this.currentUser = {}
+      this.selectedIds = []
+      this.roleList = []
+    },
+    async handleAuthorUser(row) {
+      const {id} = row
+      const {data: response} = await this.$http.get(`users/mgt/${id}/roles/`)
+      if (response.code) {
+        return this.$message.error(response.message)
+      }
+      this.roleList = response.allRoles
+      this.selectedIds = response.roles
+      this.currentUser = row
+      this.addRoleDialogVisible = true
+    },
+    async addRole() {
+      const roles = this.$refs['tree'].getCheckedKeys()
+      const {id} = this.currentUser
+      const {data: response} = await this.$http.put(`users/mgt/${id}/roles/`, {
+        roles
+      })
+      if (response.code) {
+        return this.$message.error(response.message)
+      }
+      this.addRoleDialogVisible = false
     }
   }
 }

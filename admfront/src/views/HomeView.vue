@@ -15,7 +15,7 @@
           <!-- v-for 生成menu -->
           <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
             <template slot="title">
-              <i class="el-icon-user"></i>
+              <i class="el-icon-menu"></i>
               <span>{{ item.name }}</span>
             </template>
             <el-menu-item :index="c.path" v-for="c in item.children" :key="c.id">{{ c.name }}</el-menu-item>
@@ -112,14 +112,14 @@ export default {
       this.$router.push('/login')
     },
     async getMenuList() {
-      const {data: response} = await this.$http.get('users/menulist/')
+      const {data: response} = await this.$http.get('users/meta/menulist/')
       if (response.code) {
         return this.$message.error(response.message)
       }
       this.menulist = response // 菜单项数组
     },
     async getUserInfo() {
-      const {data: response} = await this.$http.get('users/mgt/whoami/')
+      const {data: response} = await this.$http.get('users/meta/whoami/')
       if (response.code) {
         return this.$message.error(response.message)
       }
@@ -136,7 +136,7 @@ export default {
       this.$refs.chpwd.validate(async (valid) => {
         if (valid) {
           const {data: response} = await
-              this.$http.post(`users/mgt/${this.user.id}/chpwd/`, this.chpwdForm)
+              this.$http.post(`users/meta/chpwd/`, this.chpwdForm)
           if (response.code) {
             return this.$message.error(response.message)
           }

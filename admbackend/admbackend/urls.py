@@ -13,7 +13,6 @@ Including another URLconf
     1. Import to include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -21,13 +20,8 @@ from rest_framework_simplejwt.views import (
 )
 
 
-top_view = TokenObtainPairView.as_view()  # 这个视图函数生成一次就可以了，可以调用n次
-
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', top_view, name='login'),
-    path('token/', top_view, name='token_obtain_pair'),  # 获取
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # 刷新
+    path('login/', TokenObtainPairView.as_view(), name='login'),
+    # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # 刷新
     path('users/', include('user.urls'))
 ]

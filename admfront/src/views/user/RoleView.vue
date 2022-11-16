@@ -41,7 +41,7 @@
     </el-card>
     <!-- 授权 -->
 
-    <el-dialog title="增加" :visible.sync="addPermDialogVisible" @close="resetTree">
+    <el-dialog title="角色授权" :visible.sync="addPermDialogVisible" @close="resetTree">
       <!-- node-key="id"，this.$refs[‘tree’].getCheckedKeys()时，返回选中节点的id -->
       <!-- :props="defaultProps"，指定显示用的label的属性和子节点的属性 -->
       <!-- :default-checked-keys="selectedIds" 默认勾选的key的数组，指定显示用的label的属性和子节点的属性 -->

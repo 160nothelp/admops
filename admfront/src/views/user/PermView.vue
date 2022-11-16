@@ -18,7 +18,7 @@
       </el-row>
       <el-table border style="width: 100%" :data="dataList">
         <el-table-column type="index"></el-table-column>
-<!--        <el-table-column prop="id" label="id"></el-table-column>-->
+        <!--        <el-table-column prop="id" label="id"></el-table-column>-->
         <el-table-column prop="name" label="名称"></el-table-column>
         <el-table-column prop="codename" label="codename"></el-table-column>
         <el-table-column prop="content_type.app_label" label="应用"></el-table-column>

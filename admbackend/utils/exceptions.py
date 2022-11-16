@@ -44,6 +44,11 @@ class ValidationError(CustomBaseException):
     message = '数据验证失败'
 
 
+class PermissionDenied(CustomBaseException):
+    code = 10003
+    message = '权限异常'
+
+
 class NotFound(CustomBaseException):
     code = 10002
     message = 'Not Found Something'
@@ -56,6 +61,7 @@ exc_map = {
     'InvalidToken': InvalidToken,
     'ValidationError': ValidationError,
     'NotFound': NotFound,
+    'PermissionDenied': PermissionDenied,
 }
 
 
