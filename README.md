@@ -15,6 +15,11 @@ vue2
 |group view|查看角色列表(组)|
 |group delete|奥|
 |permission view|可以查看和分配角色(组)权限|
+|items add||
+|items change||
+|items view||
+|items delete||
+|items view 项目名|可以查看此项目名下所有|
 
 ## 后续：
 木有后续
