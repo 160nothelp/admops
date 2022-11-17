@@ -19,7 +19,7 @@ vue2
 |items change||
 |items view||
 |items delete||
-|items view 项目名|可以查看此项目名下所有|
+|items view 项目名|可以查看与此项目关联的所有(不包含items的管理)|
 
 ## 后续：
 木有后续
