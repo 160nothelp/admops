@@ -1,7 +1,18 @@
 # admops
-<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39042836/201576757-7ccf0d08-2037-49dc-b373-51a35dabee6b.png">
-<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39042836/201576805-c5aba9f4-dd45-494d-ae20-fad2cbe503cb.png">
-<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39042836/201576824-68c29174-bfa6-40a8-9102-edd1bdf58aa7.png">
-<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39042836/201576848-594752e4-aaba-4cad-a87b-2ee3dee6296b.png">
+嗯，闲的没事干
 
-后续会尝试drf的自定义权限
+## 权限说明：
+|权限|说明|
+| :----  | :----  |
+|user add| 创建用户 |
+|user change| 可以给用户分配角色(组)，修改用户信息|
+|user view| 查看用户列表|
+|user delete| 奥|
+|group add|创建角色(组)|
+|group change| 修改角色信息(组)|
+|group view|查看角色列表(组)|
+|group delete|奥|
+|permission view|可以查看和分配角色(组)权限|
+
+## 后续：
+木有后续
