@@ -1,7 +1,7 @@
 # admops
-嗯，闲的没事干
-django3
-vue2
+嗯，闲的没事干  
+django3  
+vue2  
 
 ## 权限说明：
 |权限|说明|
