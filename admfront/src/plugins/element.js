@@ -3,7 +3,7 @@ import {
   Form, FormItem, Input, Button, Message, Container,
   Header, Aside, Main, Menu, MenuItem, Submenu, Breadcrumb,
   BreadcrumbItem, Card, Row, Col, Table, TableColumn, Dialog, Pagination, Switch
-  , MessageBox, Tooltip, DropdownMenu, DropdownItem, Dropdown, Tree, Scrollbar
+  , MessageBox, Tooltip, DropdownMenu, DropdownItem, Dropdown, Tree, Scrollbar, Select, Option
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css' // UI组件样式
 
@@ -34,7 +34,10 @@ Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
 Vue.use(Tree)
 Vue.use(Scrollbar)
+Vue.use(Select)
+Vue.use(Option)
 
+// 不让message在同一页面弹出多次
 let messageInstance = null;
 const resetMessage = (options) => {
     if(messageInstance) {

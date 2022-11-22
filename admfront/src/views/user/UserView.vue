@@ -267,9 +267,13 @@ export default {
       })
     },
     async handleChange(key, value, id) {
-      await this.$http.patch(`users/mgt/${id}/`, {
+      const {data: response} = await this.$http.patch(`users/mgt/${id}/`, {
         [key]: value
       })
+      if (response.code) {
+        await this.getList()
+        return this.$message.error(response.message)
+      }
     },
     resetTree() {
       this.currentUser = {}

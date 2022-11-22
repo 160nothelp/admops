@@ -6,6 +6,8 @@ import Welcome from '../views/WelcomeView.vue'
 import User from '../views/user/UserView'
 import Perm from '../views/user/PermView'
 import Role from '../views/user/RoleView'
+import Item from '@/views/item/ItemsMgtView'
+import PlansView from '@/views/item/ItemPlansView'
 
 Vue.use(VueRouter)
 
@@ -26,6 +28,8 @@ const routes = [
             {path: '/users', component: User},
             {path: '/users/perms', component: Perm},
             {path: '/users/roles', component: Role},
+            {path: '/items', component: Item},
+            {path: '/items/plans-view', component: PlansView},
         ]
     }
 ]
