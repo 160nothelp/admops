@@ -2,6 +2,11 @@
 嗯，闲的没事干  
 django3  
 vue2  
+# 啥玩意呢
+权限 -> 角色(组) -> 用户
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39042836/203276504-fd5b8805-5d58-43ad-a929-6dffcd511b41.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39042836/203276609-3ce1d560-d803-4497-8020-bb58a73672ec.png">
+
 
 ## 权限说明：
 |权限|说明|
@@ -20,6 +25,7 @@ vue2
 |items view||
 |items delete||
 |items view 项目名|可以查看与此项目关联的所有(不包含items的管理)|
+|view_itemplans|查看项目详情,配合"items view 项目名"即可查看特定授权项目详情|
 
 ## 后续：
-木有后续
+Fast Api!!!
