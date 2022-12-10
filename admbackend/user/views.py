@@ -9,11 +9,14 @@ from django.contrib.auth.models import Group, Permission, ContentType
 from .serializers import UserSerializer, PermSerializer, GroupSerializer
 from utils.exceptions import InvalidPassword, PermissionDenied, ValidationError, WrongPassword, NotFound
 
-_exclude_content_model = ('logentry', 'contenttype', 'session',)
-_exclude_contenttypes = [c.id for c in ContentType.objects.filter(
-    model__in=_exclude_content_model
-)]  # 排除掉Django内建应用和不需要的权限
-
+try:
+    _exclude_content_model = ('logentry', 'contenttype', 'session',)
+    _exclude_contenttypes = [c.id for c in ContentType.objects.filter(
+        model__in=_exclude_content_model
+    )]  # 排除掉Django内建应用和不需要的权限
+except Exception:
+    _exclude_contenttypes = []
+    
 
 class RoleViewSet(ModelViewSet):
     queryset = Group.objects.all()
